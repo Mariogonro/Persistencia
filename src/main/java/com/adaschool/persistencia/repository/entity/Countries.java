@@ -1,5 +1,6 @@
 package com.adaschool.persistencia.repository.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 @Entity
@@ -7,35 +8,39 @@ import jakarta.persistence.*;
 public class Countries {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name", nullable = false)
+
     private String name;
-
-
-    public Countries() {
-    }
 
     public Countries(Long id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public Long getId() {
-        return id;
+    public Countries() {
     }
 
-    public void setId(Long id) {
-        this.id = id;
+
+    public Countries(CountriesDto countriesDto) {
+        this.name = countriesDto.getName();
+
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getName() {
         return name;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
-
 }
